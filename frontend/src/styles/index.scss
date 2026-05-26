@@ -1,0 +1,422 @@
+// 全局样式入口文件
+@use 'variables' as *;
+@use 'sass:color';
+
+// 全局样式
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #ffffff;
+  color: #111827;
+}
+
+#app {
+  height: 100%;
+}
+
+// 按钮样式
+.btn {
+  @include transition(all);
+  padding: $spacing-3 $spacing-6;
+  border: 1px solid $gray-300;
+  border-radius: $radius-md;
+  background: $bg-primary;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: $font-size-sm;
+  line-height: 1.5;
+
+  &:hover {
+    border-color: $primary-color;
+  }
+
+  &.btn-primary {
+    @include button-style($primary-color, white);
+  }
+
+  &.btn-secondary {
+    background: $bg-primary;
+    color: $gray-700;
+    border-color: $gray-300;
+
+    &:hover {
+      background: $gray-50;
+      border-color: $primary-color;
+      color: $primary-color;
+    }
+  }
+
+  &.btn-success {
+    @include button-style($success-color, white);
+  }
+
+  &.btn-danger {
+    @include button-style($error-color, white);
+  }
+
+  &.btn-warning {
+    @include button-style($warning-color, white);
+  }
+}
+
+// 卡片样式
+.card {
+  @include card-style;
+  padding: $spacing-6;
+  margin-bottom: $spacing-4;
+}
+
+// 表单样式
+.form-item {
+  margin-bottom: $spacing-4;
+
+  label {
+    display: block;
+    margin-bottom: $spacing-2;
+    font-weight: 500;
+    color: $gray-700;
+    font-size: $font-size-sm;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: $spacing-3;
+    border: 1px solid $gray-300;
+    border-radius: $radius-md;
+    font-size: $font-size-sm;
+    transition: border-color 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    &:hover {
+      border-color: $gray-400;
+    }
+  }
+}
+
+// 布局辅助类
+.flex-center {
+  @include flex-center;
+}
+
+.text-ellipsis {
+  @include text-ellipsis;
+}
+
+// 间距辅助类
+.m-0 { margin: $spacing-0; }
+.m-1 { margin: $spacing-1; }
+.m-2 { margin: $spacing-2; }
+.m-3 { margin: $spacing-3; }
+.m-4 { margin: $spacing-4; }
+.m-5 { margin: $spacing-5; }
+.m-6 { margin: $spacing-6; }
+.m-8 { margin: $spacing-8; }
+
+.p-0 { padding: $spacing-0; }
+.p-1 { padding: $spacing-1; }
+.p-2 { padding: $spacing-2; }
+.p-3 { padding: $spacing-3; }
+.p-4 { padding: $spacing-4; }
+.p-5 { padding: $spacing-5; }
+.p-6 { padding: $spacing-6; }
+.p-8 { padding: $spacing-8; }
+
+// ==================== 全局弹窗美化样式 - 苹果风格 ====================
+// 弹窗遮罩层
+.ant-modal-mask {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+// 弹窗容器
+.ant-modal-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+// 统一按钮主题 - 苹果风格
+.ant-btn {
+  border-radius: 12px;
+  font-weight: 500;
+  padding: 0 20px;
+  height: 40px;
+  transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border-width: 0.5px;
+
+  &.ant-btn-default {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(0, 0, 0, 0.12);
+    color: #1d1d1f;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.04);
+      border-color: rgba(0, 0, 0, 0.16);
+      transform: translateY(-1px);
+    }
+  }
+
+  &.ant-btn-primary {
+    background: #3b82f6;
+    border-color: #3b82f6;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+
+    &:hover {
+      background: #2563eb;
+      border-color: #2563eb;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    }
+
+    &:active { transform: translateY(0); }
+  }
+
+  &.ant-btn-dangerous:not(.ant-btn-link) {
+    color: #ef4444;
+    border-color: rgba(239, 68, 68, 0.3);
+
+    &:hover {
+      background: rgba(239, 68, 68, 0.1);
+      border-color: #ef4444;
+      color: #ef4444;
+    }
+  }
+
+  &.ant-btn-link {
+    border-radius: 8px;
+  }
+
+  &.ant-btn-sm {
+    border-radius: 8px;
+    height: 30px;
+    padding: 0 14px;
+  }
+}
+
+// 弹窗内容 - 苹果风格
+.ant-modal {
+  top: 0;
+  padding-bottom: 0;
+  
+  .ant-modal-content {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-radius: 20px;
+    box-shadow: 
+      0 20px 60px rgba(0, 0, 0, 0.2),
+      0 0 0 0.5px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    animation: modalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  // 弹窗头部
+  .ant-modal-header {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.08);
+    padding: 24px 28px;
+    border-radius: 20px 20px 0 0;
+    
+    .ant-modal-title {
+      font-weight: 600;
+      color: #1d1d1f;
+      font-size: 20px;
+      letter-spacing: -0.3px;
+      line-height: 1.3;
+    }
+    
+    .ant-modal-close {
+      top: 24px;
+      right: 28px;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      
+      &:hover {
+        background: rgba(0, 0, 0, 0.06);
+        transform: scale(1.1);
+      }
+      
+      .ant-modal-close-x {
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        font-size: 16px;
+        color: #86868b;
+        transition: color 0.2s ease;
+        
+        &:hover { color: #1d1d1f; }
+      }
+    }
+  }
+  
+  // 弹窗主体
+  .ant-modal-body {
+    padding: 28px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #1d1d1f;
+    line-height: 1.6;
+  }
+  
+  // 弹窗底部
+  .ant-modal-footer {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-top: 0.5px solid rgba(0, 0, 0, 0.08);
+    padding: 20px 28px;
+    border-radius: 0 0 20px 20px;
+    
+    .ant-btn {
+      border-radius: 10px;
+      height: 40px;
+      padding: 0 20px;
+      font-weight: 500;
+      font-size: 14px;
+      transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      border: 0.5px solid rgba(0, 0, 0, 0.12);
+      
+      &:not(.ant-btn-primary) {
+        background: rgba(255, 255, 255, 0.8);
+        color: #1d1d1f;
+        
+        &:hover {
+          background: rgba(0, 0, 0, 0.04);
+          border-color: rgba(0, 0, 0, 0.16);
+          transform: translateY(-1px);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+      }
+      
+      &.ant-btn-primary {
+        background: #3b82f6;
+        border-color: #3b82f6;
+        box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+        
+        &:hover {
+          background: #2563eb;
+          border-color: #2563eb;
+          transform: translateY(-1px);
+          box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+        
+        &:active { transform: translateY(0); }
+      }
+      
+      &.ant-btn-dangerous {
+        color: #ef4444;
+        border-color: rgba(239, 68, 68, 0.3);
+        
+        &:hover {
+          background: rgba(239, 68, 68, 0.1);
+          border-color: #ef4444;
+          color: #ef4444;
+        }
+      }
+    }
+  }
+
+  // 表单元素美化
+  .ant-form-item-label > label {
+    font-weight: 500;
+    color: #1d1d1f;
+    font-size: 14px;
+    letter-spacing: -0.1px;
+  }
+
+  .ant-input,
+  .ant-select-selector,
+  .ant-input-number,
+  .ant-picker,
+  .ant-textarea,
+  .ant-tree-select-selector {
+    border-radius: 10px;
+    border: 0.5px solid rgba(0, 0, 0, 0.12);
+    background: rgba(255, 255, 255, 0.9);
+    transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    font-size: 14px;
+    
+    &:hover { border-color: #3b82f6; background: rgba(255, 255, 255, 1); }
+    &:focus,
+    &.ant-input-focused,
+    &.ant-select-focused .ant-select-selector,
+    &.ant-picker-focused { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); background: rgba(255, 255, 255, 1); }
+  }
+
+  .ant-input-number { width: 100%; }
+
+  .ant-radio-group {
+    .ant-radio-button-wrapper {
+      border-radius: 8px;
+      border: 0.5px solid rgba(0, 0, 0, 0.12);
+      transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      &:hover { border-color: #3b82f6; }
+      &.ant-radio-button-wrapper-checked { background: #3b82f6; border-color: #3b82f6; box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3); }
+    }
+  }
+
+  .ant-switch { background: rgba(0, 0, 0, 0.25); &.ant-switch-checked { background: #10b981; } }
+
+  // 表格在弹窗中的样式
+  .ant-table {
+    background: transparent;
+    .ant-table-thead > tr > th {
+      background: rgba(0, 0, 0, 0.02);
+      font-weight: 600;
+      color: #1d1d1f;
+      border-bottom: 0.5px solid rgba(0, 0, 0, 0.08);
+      padding: 16px;
+      font-size: 13px;
+    }
+    .ant-table-tbody > tr {
+      transition: all 0.2s ease;
+      &:hover > td { background: rgba(0, 0, 0, 0.02); }
+      > td { padding: 16px; border-bottom: 0.5px solid rgba(0, 0, 0, 0.06); color: #1d1d1f; }
+    }
+  }
+
+  // 标签样式
+  .ant-tag { border-radius: 6px; font-weight: 500; padding: 2px 10px; border: 0.5px solid currentColor; opacity: 0.8; }
+
+  // 描述列表样式
+  .ant-descriptions {
+    .ant-descriptions-item-label { font-weight: 500; color: #1d1d1f; background: rgba(0, 0, 0, 0.02); }
+    .ant-descriptions-item-content { color: #86868b; }
+  }
+}
+
+// 弹窗动画
+@keyframes modalSlideIn {
+  from { opacity: 0; transform: scale(0.95) translateY(-20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+// 响应式优化
+@media (max-width: 768px) {
+  .ant-modal {
+    .ant-modal-content { border-radius: 16px; }
+    .ant-modal-header { padding: 20px 20px; border-radius: 16px 16px 0 0; .ant-modal-title { font-size: 18px; } }
+    .ant-modal-body { padding: 20px; }
+    .ant-modal-footer { padding: 16px 20px; border-radius: 0 0 16px 16px; }
+  }
+}
